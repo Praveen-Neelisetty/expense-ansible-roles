@@ -11,3 +11,6 @@
 db
 backend
 frontend
+
+[all:vars]
+ansible_password=DevOps321
