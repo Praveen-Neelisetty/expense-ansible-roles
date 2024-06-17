@@ -1,41 +1,5 @@
 - name: configure frontend server
   hosts: frontend
   become: true
-
-  tasks:
-    - name: Install Nginx server
-      ansible.builtin.dnf:
-        state: latest
-        name: nginx
-
-    - name: start and Enable Nginx
-      ansible.builtin.service:
-        name: nginx
-        state: started
-        enabled: true
-
-    - name: Remove default Nginx Html files website
-      ansible.builtin.file:
-        path: /usr/share/nginx/html
-        state: absent
-
-    - name: create html directory
-      ansible.builtin.file:
-        path: /usr/share/nginx/html
-        state: directory
-
-    - name: Get Frontend code from URL
-      ansible.builtin.unarchive:
-        src: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
-        dest: /usr/share/nginx/html
-        remote_src: yes
-
-    - name: Copy backend conf
-      ansible.builtin.copy:
-        src: expense.conf
-        dest: /etc/nginx/default.d/expense.conf
-
-    - name: Restart nginx
-      ansible.builtin.service:
-        name: nginx
-        state: restarted
+  roles:
+    - frontend

@@ -1,4 +1,4 @@
-- name: Install mySql for Expense
+- name: Configurate mySql server
   hosts: db
   become: true
   roles:
